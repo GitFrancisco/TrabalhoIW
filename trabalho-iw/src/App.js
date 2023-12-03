@@ -6,41 +6,71 @@ import Navbar from './components/Navbar';
 function App() {
   const [receita, setReceita] = useState("");
 
+  const [add_nomeReceita, setNomeReceita] = useState("");
+  const [add_ingrediente, setIngrediente] = useState("");
+  const [add_tempo, setTempo] = useState("");
+  const [add_imagem, setImagem] = useState("");
+
+  const inputChange = event => {
+    setReceita(event.target.value);
+  };
+
   const fetchData = () => {
-    Axios.get("https://api.sheety.co/7a067a08c05347be6ceb18c1b3f63c24/baseDeDadosTrabalhoIw/página1").then((res) => {
-      setReceita(res.data.página1[2]);
+    Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then((res) => {
+      setReceita(res.data[4]);
     });
   };
 
   const postData = () => {
-    // Aqui você pode criar um objeto com os dados que deseja enviar
-    const dataToPost = {
-      "nomeReceita": "Bolo de Koala",
-      "ingrediente": "Koala",
-      "tempo": "200 segundos",
-      "imagem": "https://c02.purpledshub.com/uploads/sites/62/2022/09/Koala.-GettyImages-1266039701-46f8a64.jpg?w=1029&webp=1",
-      "id" : 10
-    };
-
-    // Use Axios.post para enviar dados
-    Axios.post("https://api.sheety.co/7a067a08c05347be6ceb18c1b3f63c24/baseDeDadosTrabalhoIw/página1", { página1: [dataToPost] })
-      .then((res) => {
-        console.log("Dados postados com sucesso:", res.data);
-        // Atualize o estado com os dados recém-postados, se necessário
-        setReceita(dataToPost);
+    fetch('https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          data: [
+              {
+                  'nomeReceita': add_nomeReceita,
+                  'ingrediente': add_ingrediente,
+                  'tempo': add_tempo,
+                  'imagem':add_imagem
+              }
+          ]
       })
-      .catch((error) => {
-        console.error("Erro ao postar dados:", error);
-      });
-  };
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  }
 
   return (
     <div className="App">
-      <button onClick={postData}></button>
+      <label>
+        Nome da Receita: <input type="text" value={add_nomeReceita} onChange= {(e) => setNomeReceita(e.target.value)} name="nomeReceita"/>
+      </label>
+      <hr />
+      <label>
+        Ingrediente: <input type="text" value={add_ingrediente} onChange= {(e) => setIngrediente(e.target.value)} name="nomeReceita"/>
+      </label>
+      <hr />
+      <label>
+        Tempo: <input type="text" value={add_tempo} onChange= {(e) => setTempo(e.target.value)} name="nomeReceita"/>
+      </label>
+      <hr />
+      <label>
+        Imagem: <input type="text" value={add_imagem} onChange= {(e) => setImagem(e.target.value)} name="nomeReceita"/>
+      </label>
+      <hr />
+      <button type="submit" onClick={postData}>Enviar</button>
+      <button type="submit" onClick={fetchData}>Mostrar</button>
       <h3>{receita.nomeReceita}</h3>
+      <h3>{receita.ingrediente}</h3>
+      <h3>{receita.tempo}</h3>
       <img class="boloImg" src={receita.imagem}/>
     </div>
   );
 }
 
 export default App;
+
+
