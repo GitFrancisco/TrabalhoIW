@@ -30,6 +30,21 @@
 .lbRecipe input {
     margin-top: 5px;
     width: 27%;
+    text-align: center;
+    border-radius: 4px;
+    padding-left: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    border: 1px solid rgb(137, 151, 155);
+    transition: border-color 150ms ease-in-out 0s;
+    outline: none;
+    color: rgb(33, 49, 60);
+    background-color: rgb(255, 255, 255);
+    padding-right: 12px;
+    :hover{
+        box-shadow: rgb(231 238 236) 0px 0px 0px 3px;
+    }
+
  }
 
 .imgPreview{
@@ -37,3 +52,18 @@
   height: 500px;
   border: 2px solid #ffbb00;
  }
+
+ #submitButton{
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  justify-content: center;
+  background-color: rgba(23, 27, 31, 0.677);
+  height: 80px;
+  width: 200px;
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+}
+ 
