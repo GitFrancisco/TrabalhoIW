@@ -1,0 +1,8 @@
+.lbSignup {
+    display: block;
+    margin-bottom: 10px; /* Adicione margem inferior para separar os campos */
+}
+
+.lbSignup input {
+    width: 10%;
+}

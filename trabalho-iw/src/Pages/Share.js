@@ -6,21 +6,10 @@ import { useState } from "react";
 
 
 function Share() {
-    const [receita, setReceita] = useState("");
     const [add_nomeReceita, setNomeReceita] = useState("Your Recipe Name");
     const [add_ingrediente, setIngrediente] = useState("Your Ingredients");
     const [add_tempo, setTempo] = useState("Your Time");
     const [add_imagem, setImagem] = useState("");
-  
-    const inputChange = event => {
-      setReceita(event.target.value);
-    };
-  
-    const fetchData = () => {
-      Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then((res) => {
-        setReceita(res.data[1]);
-      });
-    };
   
     const postData = () => {
       fetch('https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos', {
