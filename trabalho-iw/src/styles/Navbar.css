@@ -70,26 +70,44 @@
 }
 @media only screen and (max-width: 900px) {
   .navbar .rightSide a {
-    width: 70px;
+    width: 100px;
+    padding: 5px;
+    margin-left: 10px;
   }
   .navbar .leftSide {
     padding-left: 50px;
+
   }
+
 }
 
 @media only screen and (max-width: 600px) {
   .navbar .rightSide a {
     display: none;
+    margin-left: 50px;
   }
 
   .navbar .rightSide {
     justify-content: flex-end;
-    padding-right: 50px;
+    padding-right: 5px;
   }
 
   .navbar .rightSide button {
     display: inherit;
+    
   }
+
+  .hiddenLinks {
+    display: inherit;
+    flex-direction: row;
+    
+  }
+
+  .hiddenLinks.show {
+    display: flex;
+  }
+  
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -100,4 +118,6 @@
   .hiddenLinks {
     display: none;
   }
+
+
 }
