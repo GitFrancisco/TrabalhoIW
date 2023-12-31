@@ -19,25 +19,21 @@ function Recipes() {
         });
     };
 
+    
+
     return (
         <div className="Recipes">
-            
+            <h2>Receitas:</h2>
+            {receitas.map((receita, index) => (
+                <div key={index} className="receita-item">
+                    <p>Nome: {receita.nomeReceita}</p>
+                    <img className='imgPreview' src={receita.imagem}/>
+                    <p>Tempo: {receita.tempo}</p>
+                    <p>Ingredientes: {receita.ingrediente}</p>
+                </div>
+            ))}
         </div>
     );
 }
 
 export default Recipes;
-
-/*
-            <div>
-                <h2>Receitas:</h2>
-                {receitas.map((receita, index) => (
-                    <div key={index} className="receita-item">
-                        <p>Nome: {receita.nomeReceita}</p>
-                        <img className='imgPreview' src={receita.imagem}/>
-                        <p>Tempo: {receita.tempo}</p>
-                        <p>Ingredientes: {receita.ingrediente}</p>
-                    </div>
-                ))}
-            </div>
-            */

@@ -1,69 +1,62 @@
+/* No arquivo Share.css */
+
 .shareTitle {
-  justify-content: center;
+  text-align: center; /* Centralizar o texto */
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 50px;
-  font-weight: 50;
+  font-weight: bold; /* Corrigir valor inválido para font-weight */
   color: rgb(0, 0, 0);
 }
 
 .Share {
-    display: flex;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+}
+
 .leftSideShare,
 .rightSideShare {
-    flex: 1;
-  }
+  flex: 1;
+  padding: 20px; /* Adicione um preenchimento para espaçamento interno */
+}
 
 .lbRecipe {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
-    font-family: Tahoma, Verdana, sans-serif;
-    font-size: 21px;
-    font-weight: 50;
-    color: rgb(0, 0, 0);
- }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 21px;
+  font-weight: bold; /* Corrigir valor inválido para font-weight */
+  color: rgb(0, 0, 0);
+}
 
 .lbRecipe input {
-    margin-top: 5px;
-    width: 27%;
-    text-align: center;
-    border-radius: 4px;
-    padding-left: 12px;
-    font-size: 14px;
-    font-weight: normal;
-    border: 1px solid rgb(137, 151, 155);
-    transition: border-color 150ms ease-in-out 0s;
-    outline: none;
-    color: rgb(33, 49, 60);
-    background-color: rgb(255, 255, 255);
-    padding-right: 12px;
-    :hover{
-        box-shadow: rgb(231 238 236) 0px 0px 0px 3px;
-    }
+  margin-top: 5px;
+  width: 100%; /* Alterado para ocupar 100% da largura do contêiner pai */
+  text-align: center;
+  border-radius: 4px;
+  padding: 8px; /* Adicione algum preenchimento para melhor aparência */
+  font-size: 14px;
+  border: 1px solid rgb(137, 151, 155);
+  transition: border-color 150ms ease-in-out 0s;
+  outline: none;
+  color: rgb(33, 49, 60);
+  background-color: rgb(255, 255, 255);
+}
 
- }
-
-.imgPreview{
-  width: 500px;
-  height: 500px;
+.imgPreview {
+  width: 100%; /* Ocupa 100% da largura do contêiner pai */
+  max-width: 500px; /* Limita a largura máxima para 500px */
+  height: auto;
   border: 2px solid #ffbb00;
- }
+}
 
- #submitButton{
-  color: black;
+#submitButton {
+  color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  justify-content: center;
   background-color: rgba(23, 27, 31, 0.677);
   height: 80px;
-  width: 200px;
-  color: white;
-  text-decoration: none;
+  width: 100%; /* Ocupa 100% da largura do contêiner pai */
   font-size: 30px;
 }
- 
