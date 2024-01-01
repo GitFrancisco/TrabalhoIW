@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/Recipes.css";
+// APIs
 import Axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Recipes() {
   const [receitas, setReceitas] = useState([]);
@@ -26,22 +29,8 @@ function Recipes() {
 
   return (
     <div className="Recipes">
-      <input
-        id="searchBar"
-        placeholder="Search for a specific recipe!"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div>
-        <h2>Receitas:</h2>
-        {filterRecipes().map((receita, index) => (
-          <div key={index} className="receita-item">
-            <p>Nome: {receita.nomeReceita}</p>
-            <img className="imgPreview" src={receita.imagem} alt={`Recipe ${index}`} />
-            <p>Tempo: {receita.tempo}</p>
-            <p>Ingredientes: {receita.ingrediente}</p>
-          </div>
-        ))}
-      </div>
+      <h2>Recipes:</h2>
+      <input id="searchBar" placeholder="Search for a specific recipe!" onChange={(e) => setSearchTerm(e.target.value)} />
     </div>
   );
 }
@@ -49,15 +38,16 @@ function Recipes() {
 export default Recipes;
 
 /*
-            <div>
-                <h2>Receitas:</h2>
-                {receitas.map((receita, index) => (
-                    <div key={index} className="receita-item">
-                        <p>Nome: {receita.nomeReceita}</p>
-                        <img className='imgPreview' src={receita.imagem}/>
-                        <p>Tempo: {receita.tempo}</p>
-                        <p>Ingredientes: {receita.ingrediente}</p>
-                    </div>
-                ))}
-            </div>
+  return (
+    <div className="Recipes">
+      <h2>Recipes:</h2>
+      <input id="searchBar" placeholder="Search for a specific recipe!" onChange={(e) => setSearchTerm(e.target.value)} />
+      {filterRecipes().map((receita, index) => (
+        <div key={index} className="receita-item" onClick={console.log("teste")}>
+          <p>{receita.nomeReceita}</p>
+          <img className="imgPreview" src={receita.imagem} />
+        </div>
+      ))}
+    </div>
+  );        
             */

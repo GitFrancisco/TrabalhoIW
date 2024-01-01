@@ -33,7 +33,7 @@ function Navbar() {
             <Link to="/recipes"> Cake Recipes 📖</Link>
             <Link to="/share">  Share your Recipe🔗 </Link>
             <Link to="/about"> About us 🧑‍💻</Link>
-            <Link to="/signup"> Join us 🪶</Link>
+            <Link to="/Dashboard"> Admin Dashboard🪶</Link>
             <button onClick={toggleNavBar}>
               <ReorderIcon/>
             </button>

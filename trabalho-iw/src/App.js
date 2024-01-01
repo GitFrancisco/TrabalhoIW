@@ -4,7 +4,7 @@ import Home from "./Pages/Home";
 import Share from "./Pages/Share";
 import Recipes from "./Pages/Recipes";
 import Signup from "./Pages/Signup";
-import Login from "./Pages/Login";
+import AdminDashboard from "./Pages/AdminDashboard";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -16,8 +16,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/Share" component={Share} />
           <Route path="/Recipes" component={Recipes} />
-          <Route path="/Signup" component={Signup} />
-          <Route path="/Login" component={Login} />
+          <Route path="/Dashboard" component={AdminDashboard} />
         </Switch>
       </Router>
     </div>
