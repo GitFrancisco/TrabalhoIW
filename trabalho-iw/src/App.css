@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -37,9 +38,6 @@
   }
 }
 
-.boloNome{
-  
-}
 .boloImg{
   width: 500px;
   height: 500px;

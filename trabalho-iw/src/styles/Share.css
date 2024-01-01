@@ -60,3 +60,9 @@
   width: 100%; /* Ocupa 100% da largura do contêiner pai */
   font-size: 30px;
 }
+
+@media only screen and (max-width: 620px) {
+  .Share {
+    flex-direction: column; /* Altere para 'column' */
+  }
+}

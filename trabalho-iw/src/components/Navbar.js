@@ -7,7 +7,7 @@ import '../styles/Navbar.css';
 
 function Navbar() {
 
-  const [openLinks, setOpenLinks] = useState(false)
+  const [openLinks, setOpenLinks] = useState(false);
   const toggleNavBar = () =>  {
     setOpenLinks(!openLinks);
   };
@@ -26,6 +26,7 @@ function Navbar() {
               <Link to="/recipes"> Cake Recipes </Link>
               <Link to="/share"> Share your Recipe </Link>
               <Link to="/about"> About us </Link>
+              <Link to="/Dashboard"> Admin Dashboard</Link>
             </div>
         </div>
           <div className="rightSide">

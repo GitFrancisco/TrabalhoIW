@@ -1,0 +1,21 @@
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .about div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about h1, .about h2 {
+    margin: 0;
+  }
+  
+  .about p {
+    grid-column: span 2;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

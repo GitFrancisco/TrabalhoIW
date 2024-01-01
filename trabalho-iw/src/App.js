@@ -5,6 +5,7 @@ import Share from "./Pages/Share";
 import Recipes from "./Pages/Recipes";
 import Signup from "./Pages/Signup";
 import AdminDashboard from "./Pages/AdminDashboard";
+import about from "./Pages/about";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/Share" component={Share} />
           <Route path="/Recipes" component={Recipes} />
           <Route path="/Dashboard" component={AdminDashboard} />
+          <Route path="/about" component={about} />
         </Switch>
       </Router>
     </div>
