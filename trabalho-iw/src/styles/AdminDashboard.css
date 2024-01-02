@@ -6,3 +6,43 @@
 .lbLogin input {
     width: 10%;
 }
+
+.adminDashboardAccess {
+    display: flex;
+  }
+  
+
+  .editRecipe {
+    margin: 10px; /* Optional margin for spacing between DIVs */
+    height: 100%;
+    width: 65%;
+  }
+
+  .createAdmin {
+    flex: 1;
+    margin: 10px; /* Optional margin for spacing between DIVs */
+    height: 100%;
+  }
+
+.btAdmin{ 
+    margin-top: 10px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(23, 27, 31, 0.677);
+    height: 80px;
+    width: 75%; /* Ocupa 100% da largura do contêiner pai */
+    font-size: 30px;
+}
+
+.updateRecipe{
+    display: block;
+    margin: 0px auto;
+}
+
+#searchRecipeUpdate{
+    width: 45%;
+    text-align: center;
+}
+  
