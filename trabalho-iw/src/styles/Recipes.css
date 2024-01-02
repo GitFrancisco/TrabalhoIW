@@ -16,8 +16,6 @@
     align-items: center;
 }
 
-
-
 .imgPreview {
     max-width: 100%;
     height: auto;
@@ -25,7 +23,9 @@
     margin: 0 auto;
     margin-bottom: 10px;
 }
-
+.imgPreview:hover {
+    cursor: pointer;
+}
 
 h2 {
     text-align: left;
@@ -46,3 +46,30 @@ h2 {
     margin-top: 20px;
     margin-right: 37px;
   }
+
+.fullContext {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Adicione um fundo semi-transparente para destacar o .fullContext */
+    border-radius: 20px; /* Ajuste o valor conforme necessário para obter a curvatura desejada */
+    margin: 170px 20px 20px 20px; /* Ajuste a margem conforme necessário para garantir que não esteja encostando nas bordas do contêiner principal */
+    height: 70%;
+
+    img {
+        width: 500px;
+        height: 500px;
+        
+    }
+}
+  
+.contextLeft{
+    display: block;
+    margin-left: 0px;
+}
