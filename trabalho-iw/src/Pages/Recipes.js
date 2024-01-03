@@ -8,12 +8,12 @@ import { useEffect } from "react";
 function Recipes() {
   const [receitas, setReceitas] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRecipe, setSelectedRecipe] = useState("");
+  const [selectedRecipe, setSelectedRecipe] = useState("a");
   // Full context
-  const [recipeName, setRecipeName] = useState("");
-  const [ingredient, setIngredient] = useState("");
-  const [time, setTime] = useState("");
-  const [image, setImage] = useState("");
+  const [recipeName, setRecipeName] = useState("Bolo de Laranja");
+  const [ingredient, setIngredient] = useState("Laranja");
+  const [time, setTime] = useState("10 segundos");
+  const [image, setImage] = useState("https://i.ytimg.com/vi/4-yT1rjtdm8/maxresdefault.jpg");
 
   useEffect(() => {
   //  fetchData();
