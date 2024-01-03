@@ -8,12 +8,13 @@ import { useEffect } from "react";
 function Recipes() {
   const [receitas, setReceitas] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRecipe, setSelectedRecipe] = useState("");
+  const [selectedRecipe, setSelectedRecipe] = useState("a");
   // Full context
-  const [recipeName, setRecipeName] = useState("");
-  const [ingredient, setIngredient] = useState("");
-  const [time, setTime] = useState("");
-  const [image, setImage] = useState("");
+  const [recipeName, setRecipeName] = useState("Bolo de Laranja");
+  const [ingredient, setIngredient] = useState("Laranja");
+  const [description, setDescription] = useState("Esta é uma deliciosa receita de bolo de laranja.");
+  const [time, setTime] = useState("10 segundos");
+  const [image, setImage] = useState("https://i.ytimg.com/vi/4-yT1rjtdm8/maxresdefault.jpg");
 
   useEffect(() => {
   //  fetchData();
@@ -63,16 +64,19 @@ function Recipes() {
       ))}
 
     {selectedRecipe ? (    
-    <div className="fullContext">
-        <div className="contextLeft">
-          <h1 className="textContext">{recipeName}</h1>
-          <p className="textContext">{time}</p>
-          <p className="textContext">{ingredient}</p>
-          <img src={image}/>
-          <button onClick={() => { setSelectedRecipe("") }}>Close</button>
-        </div>
-    </div>) : <div hidden></div>}
+ <div className="fullContext">
+    <div className="contextLeft">
+      <h1 className="textContext">{recipeName}</h1>
+      <p className="textContext">{time}</p>
+      <img src={image}/>
+      <button onClick={() => { setSelectedRecipe("") }}>Close</button>
     </div>
+    <div className="contextRight">
+      <p className="textContext">{ingredient}</p>
+      <p className="textContext">{description}</p>
+    </div>
+</div>) : <div hidden></div>}
+</div>
   );      
 }
 
