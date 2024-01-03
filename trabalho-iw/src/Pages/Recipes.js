@@ -9,9 +9,9 @@ function Recipes() {
   const [receitas, setReceitas] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  //useEffect(() => {
+   // fetchData();
+ // }, []);
 
   const fetchData = () => {
     Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(

@@ -133,9 +133,9 @@ function AdminDashboard() {
   };
 
   // Chamar a função fetchData assim que o componente for montado
-  useEffect(() => {
-    fetchCakeData();
-  }, []);
+ // useEffect(() => {
+ //   fetchCakeData();
+  //}, []);
 
   return (
     <div className="AdminDashboard">
