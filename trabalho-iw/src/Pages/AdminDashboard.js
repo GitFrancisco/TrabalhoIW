@@ -9,10 +9,11 @@ function AdminDashboard() {
   const [login, setLogin] = useState([]);
   const [loginError, setLoginError] = useState("");
   const [authenticated, setAuthenticated] = useState(true);
-  // Create a new admin account
+  // Manage Admin Account
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  // Cake Recipes
+  const [selectedUser, setSelectedUser] = useState("");
+  // Manage Cake Recipes
   const [receitas, setReceitas] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
@@ -44,7 +45,7 @@ function AdminDashboard() {
   };
 
   // ************* Admin ****************
-  const postData = () => {
+  const addAdmin = () => {
     fetch("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=userLogin", {
       method: "POST",
       headers: {
@@ -63,13 +64,58 @@ function AdminDashboard() {
       .then((response) => response.json())
       .then((data) => console.log(data));
   };
-  // ************* Recipes ****************
 
+  const removeAdmin = () => {
+    if (selectedUser) {
+      fetch(
+        `https://sheetdb.io/api/v1/e0qsyv4qfu64j/username/${selectedUser}?sheet=userLogin`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Atualiza a data
+          fetchData();
+          setSelectedUser("");
+        })
+        .catch((error) => {
+          console.error("Error deleting user:", error);
+        });
+    }
+  };
+
+  // Filters the results
+  const filterAdmin = () => {
+    return login.filter((user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  const selectUser = (user) => {
+    setSelectedUser(user);
+    if (selectedUser) {
+      console.log(selectedUser);
+    } else {
+      console.log("Error.");
+    }
+  };
+  // ************* Recipes ****************
 
   // Selects the recipe
   const selectRecipe = (nomeReceita) => {
     setSelectedRecipe(nomeReceita);
-  }
+    if (selectRecipe) {
+      console.log(selectedRecipe);
+    } else {
+      console.log("Error.");
+    }
+  };
 
   // Removes a recipe from the API
   const removeRecipe = (nomeReceita) => {
@@ -87,32 +133,38 @@ function AdminDashboard() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          // Atualiza a data
           fetchCakeData();
-          // Atualize a lista de utilizadores após a remoção bem-sucedida se necessário
-          // Exemplo: fetchData();
         })
         .catch((error) => {
-          console.error("Error deleting user:", error);
+          console.error("Error deleting recipe:", error);
         });
     }
   };
   // Updates a recipe from the API
-  const updateRecipe = (nomeReceita) => {
+  const updateRecipe = () => {
     if (selectedRecipe && newNomeReceita) {
-      fetch(`https://sheetdb.io/api/v1/e0qsyv4qfu64j/nomeReceita/${selectedRecipe}`, {
-        method: 'PATCH',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      fetch(
+        `https://sheetdb.io/api/v1/e0qsyv4qfu64j/nomeReceita/${selectedRecipe}`,
+        {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             data: {
-                'nomeReceita': {newNomeReceita}
-            }
-        })
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+              nomeReceita: `${newNomeReceita}`,
+            },
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Atualiza a data
+          fetchCakeData();
+        });
     }
   };
 
@@ -133,9 +185,10 @@ function AdminDashboard() {
   };
 
   // Chamar a função fetchData assim que o componente for montado
- // useEffect(() => {
- //   fetchCakeData();
-  //}, []);
+  useEffect(() => {
+  //   fetchCakeData();
+  //   fetchData();
+  }, []);
 
   return (
     <div className="AdminDashboard">
@@ -150,7 +203,7 @@ function AdminDashboard() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               {filterRecipes().map((receita, index) => (
-                <div key={index} className="receita-item">
+                <div key={index} className="recipeDisplay">
                   <p>{receita.nomeReceita}</p>
                   <button onClick={() => selectRecipe(receita.nomeReceita)}>
                     Select Recipe
@@ -158,12 +211,24 @@ function AdminDashboard() {
                 </div>
               ))}
             </div>
-            
+
             <label>
-              Recipe Name:<input className="updateRecipe" onChange={(e) => setnewNomeReceita(e.target.value)}></input>
+              Recipe Name:
+              <input
+                className="updateRecipe"
+                onChange={(e) => setnewNomeReceita(e.target.value)}
+              ></input>
             </label>
-            <button className="btAdmin" onClick={() => updateRecipe(selectedRecipe)}>Update Recipe</button>
-            <button className="btAdmin" onClick={() => removeRecipe(selectedRecipe)}>Delete Recipe</button>
+            <label className="lbAdmin">Selected Recipe: {selectedRecipe}</label>
+            <button className="btAdmin" onClick={updateRecipe}>
+              Update Recipe
+            </button>
+            <button
+              className="btAdmin"
+              onClick={() => removeRecipe(selectedRecipe)}
+            >
+              Delete Recipe
+            </button>
           </div>
           <div className="createAdmin">
             <h1>Create New Admin User</h1>
@@ -181,11 +246,22 @@ function AdminDashboard() {
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </label>
-            <button className="btAdmin" onClick={postData}>
+            <button className="btAdmin" onClick={addAdmin}>
               Create New Admin
             </button>
             <h1>Delete Admin User</h1>
-            <button className="btAdmin">Delete Selected Admin</button>
+            {filterAdmin().map((user, index) => (
+              <div key={index} className="recipeDisplay">
+                <p>{user.username}</p>
+                <button onClick={() => selectUser(user.username)}>
+                  Select User
+                </button>
+              </div>
+            ))}
+            <label className="lbAdmin">Selected User: {selectedUser}</label>
+            <button className="btAdmin" onClick={removeAdmin}>
+              Delete Selected Admin
+            </button>
           </div>
         </div>
       ) : (
