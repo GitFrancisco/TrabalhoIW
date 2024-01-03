@@ -93,7 +93,7 @@ function Recipes() {
             <h1 className="textTitle">{recipeName}</h1>
             <p className="textTime">{time}</p>
             <img src={image} />
-            <button
+            <button className="closeButton"
               onClick={() => {
                 setSelectedRecipe("");
               }}
