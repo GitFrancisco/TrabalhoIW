@@ -13,10 +13,12 @@ function Recipes() {
   const [recipeName, setRecipeName] = useState("Bolo de Laranja");
   const [ingredient, setIngredient] = useState("Laranja");
   const [time, setTime] = useState("10 segundos");
-  const [image, setImage] = useState("https://i.ytimg.com/vi/4-yT1rjtdm8/maxresdefault.jpg");
+  const [image, setImage] = useState(
+    "https://i.ytimg.com/vi/4-yT1rjtdm8/maxresdefault.jpg"
+  );
 
   useEffect(() => {
-  //  fetchData();
+    //  fetchData();
   }, []);
 
   const fetchData = () => {
@@ -41,40 +43,69 @@ function Recipes() {
     );
   };
 
-    // Selects the recipe
-    const selectRecipe = (nomeReceita, tempo, ingrediente, imagem) => {
-      setSelectedRecipe(nomeReceita);
-      setRecipeName(nomeReceita);
-      setTime(tempo);
-      setIngredient(ingrediente);
-      setImage(imagem);
-    };
+  // Selects the recipe
+  const selectRecipe = (nomeReceita, tempo, ingrediente, imagem) => {
+    setSelectedRecipe(nomeReceita);
+    setRecipeName(nomeReceita);
+    setTime(tempo);
+    setIngredient(ingrediente);
+    setImage(imagem);
+  };
 
   return (
     /* Main Div */
     <div className="Recipes">
       <h2>Recipes:</h2>
-      <input id="searchBar" placeholder="Search for a specific recipe!" onChange={(e) => setSearchTerm(e.target.value)} />
+      <input
+        id="searchBar"
+        placeholder="Search for a specific recipe!"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {filterRecipes().map((receita, index) => (
-        <div key={index} className="receita-item" onClick={console.log("teste")}>
+        <div
+          key={index}
+          className="receita-item"
+          onClick={console.log("teste")}
+        >
           <p>{receita.nomeReceita}</p>
-          <img className="imgPreview" src={receita.imagem} onClick={() => selectRecipe(receita.nomeReceita, receita.tempo, receita.ingrediente, receita.imagem)} />
+          <img
+            className="imgPreview"
+            src={receita.imagem}
+            onClick={() =>
+              selectRecipe(
+                receita.nomeReceita,
+                receita.tempo,
+                receita.ingrediente,
+                receita.imagem
+              )
+            }
+          />
         </div>
       ))}
 
-    {selectedRecipe ? (    
-    <div className="fullContext">
-        <div className="contextLeft">
-          <h1 className="textContext">{recipeName}</h1>
-          <p className="textContext">{time}</p>
-          <p className="textContext">{ingredient}</p>
-          <img src={image}/>
-          <button onClick={() => { setSelectedRecipe("") }}>Close</button>
+      {selectedRecipe ? (
+        <div className="fullContext">
+          <div className="contextLeft">
+            <h1 className="textContext">{recipeName}</h1>
+            <p className="textContext">{time}</p>
+            <img src={image} />
+            <button
+              onClick={() => {
+                setSelectedRecipe("");
+              }}
+            >
+              Close
+            </button>
+          </div>
+          <div className="contextRight">
+            <p className="textContext">{ingredient}</p>
+          </div>
         </div>
-    </div>) : <div hidden></div>}
+      ) : (
+        <div hidden></div>
+      )}
     </div>
-  );      
+  );
 }
 
 export default Recipes;
-
