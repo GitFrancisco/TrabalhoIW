@@ -65,7 +65,7 @@ function AdminDashboard() {
   // ************* Admin ****************
   // adds a new admin to the API (POST)
   const addAdmin = () => {
-    fetch("https://sheetdb.io/api/v1/j5mbez4g3l1l0j?sheet=userLogin", {
+    fetch("https://sheetdb.io/api/v1/j5mbez4g3l1l0?sheet=userLogin", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -81,7 +81,11 @@ function AdminDashboard() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) =>{
+        console.log(data);
+        // Atualiza a data
+        fetchData();
+      })
   };
 
   // removes an existing user from the API (REMOVE)
@@ -156,6 +160,7 @@ function AdminDashboard() {
           console.log(data);
           // updates the data
           fetchCakeData();
+          setSelectedRecipe("");
         })
         .catch((error) => {
           console.error("Error deleting recipe:", error);
