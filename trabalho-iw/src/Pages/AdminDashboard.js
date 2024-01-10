@@ -13,7 +13,7 @@ function AdminDashboard() {
   // declares a state variable "loginError" which will be used in case the username/password do not match 
   const [loginError, setLoginError] = useState("");
   // declares a state variable "authenticated" which will if the user logins or not
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   // **** Manage Admin Account ****
   // declares a state variable "newUsername" which will be used to create a new user account
   const [newUsername, setNewUsername] = useState("");
@@ -54,7 +54,8 @@ function AdminDashboard() {
   
   // fetches the data user data from the API (GET)
   const fetchData = () => {
-    Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=userLogin").then(
+    
+    Axios.get("https://sheetdb.io/api/v1/j5mbez4g3l1l0?sheet=userLogin").then(
       (res) => {
         setLogin(res.data);
       }
@@ -64,7 +65,7 @@ function AdminDashboard() {
   // ************* Admin ****************
   // adds a new admin to the API (POST)
   const addAdmin = () => {
-    fetch("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=userLogin", {
+    fetch("https://sheetdb.io/api/v1/j5mbez4g3l1l0j?sheet=userLogin", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -87,7 +88,7 @@ function AdminDashboard() {
   const removeAdmin = () => {
     if (selectedUser) {
       fetch(
-        `https://sheetdb.io/api/v1/e0qsyv4qfu64j/username/${selectedUser}?sheet=userLogin`,
+        `https://sheetdb.io/api/v1/j5mbez4g3l1l0/username/${selectedUser}?sheet=userLogin`,
         {
           method: "DELETE",
           headers: {
@@ -141,7 +142,7 @@ function AdminDashboard() {
   const removeRecipe = (nomeReceita) => {
     if (nomeReceita) {
       fetch(
-        `https://sheetdb.io/api/v1/e0qsyv4qfu64j/nomeReceita/${nomeReceita}`,
+        `https://sheetdb.io/api/v1/j5mbez4g3l1l0/nomeReceita/${nomeReceita}`,
         {
           method: "DELETE",
           headers: {
@@ -166,7 +167,7 @@ function AdminDashboard() {
   const updateRecipe = () => {
     if (selectedRecipe && newNomeReceita) {
       fetch(
-        `https://sheetdb.io/api/v1/e0qsyv4qfu64j/nomeReceita/${selectedRecipe}`,
+        `https://sheetdb.io/api/v1/j5mbez4g3l1l0/nomeReceita/${selectedRecipe}`,
         {
           method: "PATCH",
           headers: {
@@ -191,7 +192,7 @@ function AdminDashboard() {
 
   // gets the recipes data
   const fetchCakeData = () => {
-    Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(
+    Axios.get("https://sheetdb.io/api/v1/j5mbez4g3l1l0?sheet=ctgBolos").then(
       (res) => {
         setReceitas(res.data);
       }

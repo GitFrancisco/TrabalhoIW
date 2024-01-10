@@ -18,7 +18,7 @@ function Share() {
 
     // posts a new recipe using all the state variables above
     const postData = () => {
-        fetch('https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos', {
+        fetch('https://sheetdb.io/api/v1/j5mbez4g3l1l0?sheet=ctgBolos', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

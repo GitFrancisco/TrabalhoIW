@@ -29,7 +29,7 @@ function Recipes() {
 
   // fetches the recipes from the API
   const fetchData = () => {
-    Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(
+    Axios.get("https://sheetdb.io/api/v1/j5mbez4g3l1l0?sheet=ctgBolos").then(
       (res) => {
         setReceitas(res.data);
       }
