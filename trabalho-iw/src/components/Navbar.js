@@ -5,7 +5,9 @@ import ReorderIcon from '@mui/icons-material/Reorder';
 import '../styles/Navbar.css';
 
 function Navbar() {
+  // state variable that verifies whether the "links" are open or not (phone mode)
   const [openLinks, setOpenLinks] = useState(false);
+  // checks if the navbar is expanded or not (phone mode)
   const toggleNavBar = () =>  {
     setOpenLinks(!openLinks);
   };

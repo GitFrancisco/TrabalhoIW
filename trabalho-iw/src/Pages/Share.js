@@ -1,15 +1,22 @@
 import React from 'react';
 import "../styles/Share.css";
-import Axios from "axios";
 import { useState } from "react";
 
 function Share() {
+    // declares a state variable used in the post request (contains the name of the new recipe)
     const [add_nomeReceita, setNomeReceita] = useState("Your Recipe Name");
+    // declares a state variable used in the post request (contains the list of ingredients for the new recipe)
     const [add_ingrediente, setIngrediente] = useState("Ingredient 1, Ingredient 2");
+    // declares a state variable used in the post request (contains the time of the new recipe)
     const [add_tempo, setTempo] = useState("Your Time");
+    // declares a state variable used in the post request (contains the description of the new recipe)
     const [add_descricao, setDescricao] = useState("Your Description");
+    // declares a state variable used in the post request (contains the steps of the new recipe)
+    const [add_preparacao, setPreparacao] = useState("Steps 1, Steps 2");
+    // declares a state variable used in the post request (contains the link of the new recipe)
     const [add_imagem, setImagem] = useState("");
 
+    // posts a new recipe using all the state variables above
     const postData = () => {
         fetch('https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos', {
             method: 'POST',
@@ -21,9 +28,10 @@ function Share() {
                 data: [
                     {
                         'nomeReceita': add_nomeReceita,
-                        'ingrediente': add_ingrediente.split(',').map(item => item.trim()),
+                        'ingrediente': add_ingrediente,
                         'tempo': add_tempo,
                         'descricao' : add_descricao,
+                        'preparacao': add_preparacao,
                         'imagem': add_imagem
                     }
                 ]
@@ -41,6 +49,7 @@ function Share() {
                 <label className='lbRecipe'>Ingredients: <input type="text" value={add_ingrediente} onChange={(e) => setIngrediente(e.target.value)} name="nomeReceita"/></label>
                 <label className='lbRecipe'>Time: <input type="text" value={add_tempo} onChange={(e) => setTempo(e.target.value)} name="nomeReceita"/></label>
                 <label className='lbRecipe'>Image: <input type="text" value={add_imagem} onChange={(e) => setImagem(e.target.value)} name="nomeReceita"/></label>
+                <label className='lbRecipe'>Steps: <input type="text" value={add_preparacao} onChange={(e) => setPreparacao(e.target.value)} name="nomeReceita"/></label>
                 <label className='lbRecipe'>Description: <textarea id="textAreaStyle" cols="50" rows="10" value={add_descricao} onChange={(e) => setDescricao(e.target.value)} name="nomeReceita"/></label>
 
                 <button id="submitButton" type="submit" onClick={postData}>Submit</button>
@@ -55,40 +64,18 @@ function Share() {
                         <li key={index}>{ingredient.trim()}</li>
                     ))}
                 </ul>
-                <h3>{add_descricao}</h3>
                 <h3>{add_tempo}</h3>
+                <h3>Description</h3>
+                <p>{add_descricao}</p>
+                <h3>Steps</h3>
+                <ul>
+                    {add_preparacao.split(',').map((preparacao, index) => (
+                        <li key={index}>{preparacao.trim()}</li>
+                    ))}
+                </ul>
             </div>
         </div>
     )
 }
 
 export default Share;
-
-/*
-<label>
-Nome da Receita: <input type="text" value={add_nomeReceita} onChange= {(e) => setNomeReceita(e.target.value)} name="nomeReceita"/>
-</label>
-<hr />
-<label>
-Ingrediente: <input type="text" value={add_ingrediente} onChange= {(e) => setIngrediente(e.target.value)} name="nomeReceita"/>
-</label>
-<hr />
-<label>
-Tempo: <input type="text" value={add_tempo} onChange= {(e) => setTempo(e.target.value)} name="nomeReceita"/>
-</label>
-<hr />
-<label>
-Imagem: <input type="text" value={add_imagem} onChange= {(e) => setImagem(e.target.value)} name="nomeReceita"/>
-</label>
-<hr />
-<button type="submit" onClick={postData}>Enviar</button>
-<button type="submit" onClick={fetchData}>Mostrar</button>
-<h3>{receita.nomeReceita}</h3>
-<h3>{receita.ingrediente}</h3>
-<h3>{receita.tempo}</h3>
-<img class="boloImg" src={receita.imagem}/>
-            <label className='lbRecipe'>Image: <input id="fileUpload" type="file" onChange={e => uploadImage(e)}/></label>
-
-
-<label className='lbRecipe'>Image: <input type="text" value={add_imagem} onChange= {(e) => setImagem(e.target.value)} name="nomeReceita"/></label>
-*/

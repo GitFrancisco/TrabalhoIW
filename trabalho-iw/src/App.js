@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Share from "./Pages/Share";
 import Recipes from "./Pages/Recipes";
-import Signup from "./Pages/Signup";
 import AdminDashboard from "./Pages/AdminDashboard";
 import about from "./Pages/about";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

@@ -7,27 +7,27 @@ import { useEffect } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 
 function Recipes() {
+  // state variable that is used to store every recipe in the API (fetch)
   const [receitas, setReceitas] = useState([]);
+  // state variable used in the search bar, to search for a specific recipe
   const [searchTerm, setSearchTerm] = useState("");
+  // state variable used to open the full context popup, stores "nomeReceita"
   const [selectedRecipe, setSelectedRecipe] = useState("");
-  // Full context
-  const [recipeName, setRecipeName] = useState("Bolo de Laranja");
-  const [ingredient, setIngredient] = useState("Laranja, Farinha, Ovos, Açucar, Roxo, Rato, Amarelo, Carro");
-  const [description, setDescription] = useState("Esta é uma deliciosa receita de bolo de laranja. A sua familia vai adorar, pois é saborosa, fresca saudavel e para todos os gosto blah blha blha. Para preparar esta receita, começe por misturar os ovos com o açucar e, de seguida,coloque a farinha.");
-  const [time, setTime] = useState("1 Hora e 15 minutos");
-  const [inst, setInst] = useState("Misturar açucar com os ovos, misturar farinha, jusntr a laranja, colocar no forno a 200ºC por 3 horas");
-  const [image, setImage] = useState(
-  
-    
-    
-  
-    "https://i.ytimg.com/vi/4-yT1rjtdm8/maxresdefault.jpg"
-  );
+  // Full context "popup"
+  // state variable used to store the full recipe context of the selectedRecipe
+  const [recipeName, setRecipeName] = useState("");
+  const [ingredient, setIngredient] = useState("");
+  const [description, setDescription] = useState("");
+  const [time, setTime] = useState("");
+  const [inst, setInst] = useState("");
+  const [image, setImage] = useState("");
 
+  // loads the recipe when opening the tab
   useEffect(() => {
      fetchData();
   }, []);
 
+  // fetches the recipes from the API
   const fetchData = () => {
     Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(
       (res) => {
@@ -36,27 +36,22 @@ function Recipes() {
     );
   };
 
-  const fetchCake = () => {
-    Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(
-      (res) => {
-        setReceitas(res.data);
-      }
-    );
-  };
-
+  // filters the recipes using the searchTerm state variable
   const filterRecipes = () => {
     return receitas.filter((receita) =>
       receita.nomeReceita.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
-  // Selects the recipe
-  const selectRecipe = (nomeReceita, tempo, ingrediente, imagem) => {
+  // selects the recipe
+  const selectRecipe = (nomeReceita, tempo, ingrediente, imagem, preparacao, descricao) => {
     setSelectedRecipe(nomeReceita);
     setRecipeName(nomeReceita);
     setTime(tempo);
     setIngredient(ingrediente);
     setImage(imagem);
+    setDescription(descricao);
+    setInst(preparacao);
   };
 
 
@@ -80,7 +75,7 @@ function Recipes() {
             <p className="textContext">{description}</p>
             <div style={{display: 'flex'}}>
                 <div style={{width: '40%'}}>
-                  <h3>Ingredientes:</h3>
+                  <h3>Ingredients:</h3>
                     <ul className= "textIngr">
                         {ingredient.split(',').map((ingredient, index) => (
                             <li key={index}>{ingredient.trim()}</li>
@@ -88,7 +83,7 @@ function Recipes() {
                     </ul>
                 </div>
                 <div style={{width: '60%'}}>
-                  <h3>Instruções:</h3>
+                  <h3>Instructions:</h3>
                     <ul className= "textInstr">
                         {inst.split(',').map((inst, index) => (
                             <li key={index}>{inst.trim()}</li>
@@ -121,7 +116,9 @@ function Recipes() {
               receita.nomeReceita,
               receita.tempo,
               receita.ingrediente,
-              receita.imagem
+              receita.imagem,
+              receita.preparacao,
+              receita.descricao
             )
           }
         />

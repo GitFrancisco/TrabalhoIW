@@ -3,39 +3,56 @@ import Axios from "axios";
 import "../styles/AdminDashboard.css";
 
 function AdminDashboard() {
-  // Login
+  // **** Login ****
+  // declares a state variable "username" which will be used to check wether the account exists in the API or not
   const [username, setUsername] = useState("");
+  // declares a state variable "username" which will be used to check wether the account exists in the API or not
   const [password, setPassword] = useState("");
+  // declares a state variable "login" used to GET the (login) data from the API
   const [login, setLogin] = useState([]);
+  // declares a state variable "loginError" which will be used in case the username/password do not match 
   const [loginError, setLoginError] = useState("");
+  // declares a state variable "authenticated" which will if the user logins or not
   const [authenticated, setAuthenticated] = useState(true);
-  // Manage Admin Account
+  // **** Manage Admin Account ****
+  // declares a state variable "newUsername" which will be used to create a new user account
   const [newUsername, setNewUsername] = useState("");
+  // declares a state variable "newPassword" which will be used to create a new user account
   const [newPassword, setNewPassword] = useState("");
+  // declares a state variable "selectedUser" which will take the value of "username" from a specific user
   const [selectedUser, setSelectedUser] = useState("");
-  // Manage Cake Recipes
+  // declares a state variable "searchAdminTerm" which will be used to use the (admin) search bar
+  const [searchAdminTerm, setSearchAdminTerm] = useState("");
+  // **** Manage Cake Recipes ****
+  // declares a state variable "receitas"  used to GET the (cake) data from the API
   const [receitas, setReceitas] = useState([]);
+  // declares a state variable "searchTerm" which will be used to use the (recipes) search bar
   const [searchTerm, setSearchTerm] = useState("");
+  // declares a state variable "selectedRecipe" which will take the value of "nomeReceita" from a specific recipe
   const [selectedRecipe, setSelectedRecipe] = useState("");
+  // declares a state variable "newNomeReceita" which will be used to change "nomeReceita" of an existing recipe to newNomeReceita
   const [newNomeReceita, setnewNomeReceita] = useState("");
 
   // ************* Login ****************
+  // determines whether a user gets access to the admin dashboard or not
   const handleLogin = () => {
+    // checks if the username and password match with the ones in the API
     const user = login.find(
       (user) => user.username === username && user.password === password
     );
 
     if (user) {
-      // Usuário autenticado com sucesso
+      // Successful login
       setAuthenticated(true);
       setLoginError("");
     } else {
-      // Credenciais inválidas
+      // Invalid User
       setAuthenticated(false);
       setLoginError("Wrong Credentials.");
     }
   };
-
+  
+  // fetches the data user data from the API (GET)
   const fetchData = () => {
     Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=userLogin").then(
       (res) => {
@@ -45,6 +62,7 @@ function AdminDashboard() {
   };
 
   // ************* Admin ****************
+  // adds a new admin to the API (POST)
   const addAdmin = () => {
     fetch("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=userLogin", {
       method: "POST",
@@ -65,6 +83,7 @@ function AdminDashboard() {
       .then((data) => console.log(data));
   };
 
+  // removes an existing user from the API (REMOVE)
   const removeAdmin = () => {
     if (selectedUser) {
       fetch(
@@ -90,13 +109,14 @@ function AdminDashboard() {
     }
   };
 
-  // Filters the results
+  // filters the results (when using the search bar)
   const filterAdmin = () => {
     return login.filter((user) =>
-      user.username.toLowerCase().includes(searchTerm.toLowerCase())
+      user.username.toLowerCase().includes(searchAdminTerm.toLowerCase())
     );
   };
 
+  // gets the value of "username" of a specific user and sets the selectedUser to the selected one
   const selectUser = (user) => {
     setSelectedUser(user);
     if (selectedUser) {
@@ -107,7 +127,7 @@ function AdminDashboard() {
   };
   // ************* Recipes ****************
 
-  // Selects the recipe
+  // gets the value of "selectRecipe" of a specific user and sets the selectRecipe to the selected one
   const selectRecipe = (nomeReceita) => {
     setSelectedRecipe(nomeReceita);
     if (selectRecipe) {
@@ -117,7 +137,7 @@ function AdminDashboard() {
     }
   };
 
-  // Removes a recipe from the API
+  // removes a recipe from the API (DELETE)
   const removeRecipe = (nomeReceita) => {
     if (nomeReceita) {
       fetch(
@@ -133,7 +153,7 @@ function AdminDashboard() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          // Atualiza a data
+          // updates the data
           fetchCakeData();
         })
         .catch((error) => {
@@ -141,7 +161,8 @@ function AdminDashboard() {
         });
     }
   };
-  // Updates a recipe from the API
+
+  // Updates a recipe (only "nomeReceita") in the API (PATCH)
   const updateRecipe = () => {
     if (selectedRecipe && newNomeReceita) {
       fetch(
@@ -162,13 +183,13 @@ function AdminDashboard() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          // Atualiza a data
+          // updates the cake data
           fetchCakeData();
         });
     }
   };
 
-  // Gets the recipes data
+  // gets the recipes data
   const fetchCakeData = () => {
     Axios.get("https://sheetdb.io/api/v1/e0qsyv4qfu64j?sheet=ctgBolos").then(
       (res) => {
@@ -177,17 +198,17 @@ function AdminDashboard() {
     );
   };
 
-  // Filters the results
+  // filters the results (when using the search bar)
   const filterRecipes = () => {
     return receitas.filter((receita) =>
       receita.nomeReceita.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
-  // Chamar a função fetchData assim que o componente for montado
+  // calls both functions right when this tab is opened
   useEffect(() => {
-    // fetchCakeData();
-    //fetchData();
+    fetchCakeData();
+    fetchData();
   }, []);
 
   return (
@@ -250,6 +271,11 @@ function AdminDashboard() {
               Create New Admin
             </button>
             <h1>Delete Admin User</h1>
+            <input
+                id="searchRecipeUpdate"
+                placeholder="Search for a specific admin!"
+                onChange={(e) => setSearchAdminTerm(e.target.value)}
+              />
             {filterAdmin().map((user, index) => (
               <div key={index} className="recipeDisplay">
                 <p>{user.username}</p>

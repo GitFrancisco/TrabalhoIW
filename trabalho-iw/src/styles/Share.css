@@ -47,6 +47,7 @@
   max-width: 500px;
   height: auto;
   border: 2px solid #ffbb00;
+  margin: 0px auto;
 }
 
 #submitButton {
