@@ -15,7 +15,8 @@
 }
 
 .navbar .leftSide img {
-  width: 10%;
+  position:absolute;
+  width: 5%;
   margin-bottom: 0.5%;
 
 }
@@ -100,10 +101,14 @@
     display: inherit;
     position: absolute;
     right: 5px;
+    top:20px;
   }
 
   .navbar .leftSide img {
+    position:relative;
     width: 40%;
+    right:40px;
+    top:2px;
     margin-bottom: 0.5%;
   
   }
