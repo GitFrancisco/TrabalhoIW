@@ -1,10 +1,9 @@
-/* No arquivo Share.css */
 
 .shareTitle {
-  text-align: center; /* Centralizar o texto */
+  text-align: center;
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 50px;
-  font-weight: bold; /* Corrigir valor inválido para font-weight */
+  font-weight: bold;
   color: rgb(0, 0, 0);
 }
 
@@ -16,7 +15,7 @@
 .leftSideShare,
 .rightSideShare {
   flex: 1;
-  padding: 20px; /* Adicione um preenchimento para espaçamento interno */
+  padding: 20px;
 }
 
 .lbRecipe {
@@ -25,16 +24,16 @@
   margin-bottom: 10px;
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 21px;
-  font-weight: bold; /* Corrigir valor inválido para font-weight */
+  font-weight: bold;
   color: rgb(0, 0, 0);
 }
 
 .lbRecipe input {
   margin-top: 5px;
-  width: 100%; /* Alterado para ocupar 100% da largura do contêiner pai */
+  width: 100%;
   text-align: center;
   border-radius: 4px;
-  padding: 8px; /* Adicione algum preenchimento para melhor aparência */
+  padding: 8px;
   font-size: 14px;
   border: 1px solid rgb(137, 151, 155);
   transition: border-color 150ms ease-in-out 0s;
@@ -44,8 +43,8 @@
 }
 
 .imgPreview {
-  width: 100%; /* Ocupa 100% da largura do contêiner pai */
-  max-width: 500px; /* Limita a largura máxima para 500px */
+  width: 100%;
+  max-width: 500px;
   height: auto;
   border: 2px solid #ffbb00;
 }
@@ -57,12 +56,19 @@
   cursor: pointer;
   background-color: rgba(23, 27, 31, 0.677);
   height: 80px;
-  width: 100%; /* Ocupa 100% da largura do contêiner pai */
+  width: 90%;
+  margin-left:20px;
   font-size: 30px;
+}
+
+#textAreaStyle{
+  margin-left:20px;
+
 }
 
 @media only screen and (max-width: 620px) {
   .Share {
-    flex-direction: column; /* Altere para 'column' */
+    flex-direction: column;
+    margin-right: 15px;
   }
 }

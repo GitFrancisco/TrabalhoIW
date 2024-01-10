@@ -59,3 +59,15 @@
     margin-top: 0.5px;
     font-family: 'Calibri', Serif;
   }
+
+  @media only screen and (max-width: 620px) {
+    .about .info {
+        flex-direction: column;
+    }
+    
+    .about img {
+      width: 250px;
+      height: 275px;
+      border: 2px solid black;
+    }
+  }

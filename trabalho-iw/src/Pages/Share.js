@@ -41,7 +41,7 @@ function Share() {
                 <label className='lbRecipe'>Ingredients: <input type="text" value={add_ingrediente} onChange={(e) => setIngrediente(e.target.value)} name="nomeReceita"/></label>
                 <label className='lbRecipe'>Time: <input type="text" value={add_tempo} onChange={(e) => setTempo(e.target.value)} name="nomeReceita"/></label>
                 <label className='lbRecipe'>Image: <input type="text" value={add_imagem} onChange={(e) => setImagem(e.target.value)} name="nomeReceita"/></label>
-                <label className='lbRecipe'>Description: <textarea cols="50" rows="10" value={add_descricao} onChange={(e) => setDescricao(e.target.value)} name="nomeReceita"/></label>
+                <label className='lbRecipe'>Description: <textarea id="textAreaStyle" cols="50" rows="10" value={add_descricao} onChange={(e) => setDescricao(e.target.value)} name="nomeReceita"/></label>
 
                 <button id="submitButton" type="submit" onClick={postData}>Submit</button>
             </div>

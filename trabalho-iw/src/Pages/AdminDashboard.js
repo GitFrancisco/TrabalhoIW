@@ -186,8 +186,8 @@ function AdminDashboard() {
 
   // Chamar a função fetchData assim que o componente for montado
   useEffect(() => {
-  //   fetchCakeData();
-  //   fetchData();
+    // fetchCakeData();
+    //fetchData();
   }, []);
 
   return (
@@ -269,11 +269,11 @@ function AdminDashboard() {
           <h1>Login</h1>
           <label className="lbLogin">
             Username:{" "}
-            <input type="text" onChange={(e) => setUsername(e.target.value)} />
+            <input id="userText" type="text" onChange={(e) => setUsername(e.target.value)} />
           </label>
           <label className="lbLogin">
             Password:{" "}
-            <input
+            <input id="userPass"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
